@@ -1,0 +1,30 @@
+{% extends 'food/base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{item.name}}</title>
+</head>
+<body>
+    {% block body %}
+    <div class="continer my-3 mx-2">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{item.image}}" alt="item_image" class="card" height="250px">
+            </div>
+            <div class="col-md-8">
+                <h1>{{item.name}}</h1>
+                <h2>{{item.desc}}</h2>
+                <h3>{{item.price}}</h3>
+                {% if user.is_authenticated%}
+                    <a href="{% url 'food:deleteItem' item.id %}">Delete</a>
+             
+
+                {%endif%}
+            </div>
+        </div>
+    </div>
+       
+    {%endblock%}
+</body>
+</html>
