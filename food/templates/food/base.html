@@ -21,6 +21,7 @@
             <span>Welcome {{user.username}}</span>
             <a class="nav-item nav-link mx-2" href="{% url 'food:addItem'%}">Add Item</a>
             <a class="nav-item nav-link mx-2" href="{% url 'logout' %}">Logout</a>
+            <a class="nav-item nav-link mx-2" href="{% url 'profile' %}">Profile</a>
             {%else %}
                 <a class="nav-item nav-link mx-2" href="{% url 'register' %}">Sign up</a>
                 <a class="nav-item nav-link mx-2" href="{% url 'login' %}">Login</a>

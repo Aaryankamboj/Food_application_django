@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 # To create a signup page - in django we have it inbuilt using below import 
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.forms.fields import EmailField
 from django.contrib import messages
 from .forms import RegisterForm
+from .models import Profile
 # Create your views here.
 def register(request):
     if request.method == "POST":
@@ -23,3 +25,7 @@ def custom_logout(request):
     logout(request)
     messages.info(request, "Logged out Successfully")
     return redirect('food:index')
+
+@login_required #a decorator used for restriciting access to login page without a user loggedin
+def profilepage(request):
+    return render(request, 'users/profile.html')

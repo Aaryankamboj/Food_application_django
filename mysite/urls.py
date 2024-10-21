@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from users import views as user_views #importing views directly from users app
-
+from . import settings
 # inbuilt views for login and logout functionality
 from django.contrib.auth import views as authViews
 from django.contrib.auth import logout
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,4 +36,9 @@ urlpatterns = [
     path('login/', authViews.LoginView.as_view(template_name='users/login.html'), name="login"),
     # path('logout/', authViews.LogoutView.as_view(template_name='users/logout.html'), name="logout"),
     path('logout/', user_views.custom_logout, name='logout'),
+    path('profile/', user_views.profilepage, name="profile"),
 ]
+
+urlpatterns += [
+    # ... the rest of your URLconf goes here ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
