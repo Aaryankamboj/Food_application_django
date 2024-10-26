@@ -23,11 +23,11 @@ from users import views as user_views
 # To namespace the urls and path for the particular app, we use app_name = "appname"
 app_name = 'food'
 urlpatterns = [
-    path('', views.index, name="index"),
+    path('', views.IndexClassView.as_view(), name="index"),
     # food/id
-    path('<int:id>/', views.detail, name="detail"),
-    path('addItem/', views.addItem, name="addItem"), #add item
-    path('updateItem/<int:id>', views.updateItem, name="updateItem"), #updateItem
+    path('<int:pk>/', views.ItemDetailView.as_view(), name="detail"),
+    path('addItem/', views.ItemCreateView.as_view(), name="addItem"), #add item
+    path('updateItem/<int:pk>/', views.updateItem.as_view(), name="updateItem"), #updateItem
     path('deleteItem/<int:id>', views.deleteItem, name="deleteItem"), #deleteItem
     path('contact', views.contact, name="contact"),
     path('register/', user_views.register, name="userview"),
